@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <h1>Text Splitter</h1>
+  <form method="post">
+    <!-- form elements... -->
+  </form>
+  <h2>Results</h2>
+  {% for part in parts %}
+  <div class="text-part">
+    <button class="copy-button" id="copy-button-{{ loop.index }}"
+      onclick="copyToClipboard('part{{ loop.index }}', '{{ loop.index }}')">Copy</button>
+    <h3>Part {{ loop.index }}</h3>
+    <p id="part{{ loop.index }}">{{ part }}</p>
+  </div>
+  {% endfor %}
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
