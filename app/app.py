@@ -1,5 +1,8 @@
+"""Run me from parent folder with python -m app.app"""
+
 from flask import Flask, request, render_template
-from text_splitter import split_text, DEFAULT_MAX_LENGTH, remove_timestamps
+
+from app.modules.text_splitter import split_text, DEFAULT_MAX_LENGTH, remove_timestamps
 
 app = Flask(__name__)
 

@@ -1,25 +1,29 @@
 function togglePopoutTextarea() {
   var overlay = document.getElementById('popout-overlay');
+  var textarea = document.getElementById('text');
   var button = document.getElementById('toggle-button');
   var isOverlayVisible = overlay.classList.contains('visible');
 
   if (!isOverlayVisible) {
     // When opening the overlay
-    overlay.appendChild(document.getElementById('text'));
+    overlay.appendChild(textarea);
     overlay.appendChild(button);
+    textarea.classList.add('fullscreen-textarea');
     button.textContent = 'Close';
   } else {
     // When closing the overlay
-    var formGroup = document.getElementById('textarea-group');
-    formGroup.appendChild(document.getElementById('text'));
-    formGroup.appendChild(button);
+    var textareaGroup = document.getElementById('textarea-group');
+    textareaGroup.appendChild(textarea);
+    textareaGroup.appendChild(button);
+    textarea.classList.remove('fullscreen-textarea');
+    textarea.style.height = '';
     button.textContent = 'Pop-out';
   }
 
   overlay.classList.toggle('visible');
 }
 
-// Adjusted event listener for closing the overlay on outside click
+// Close the overlay when clicking outside the textarea
 window.addEventListener('click', function (event) {
   var overlay = document.getElementById('popout-overlay');
   if (event.target === overlay) {
