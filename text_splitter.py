@@ -1,5 +1,4 @@
-import re  # Import the regex module
-
+import re
 
 DEFAULT_MAX_LENGTH = 20_000
 
@@ -38,16 +37,5 @@ def remove_timestamps(text):
     Removes timestamps from the text more selectively.
     Timestamps are typically isolated and followed by text or at the beginning of a line.
     """
-    # Regex pattern for timestamps, considering context
     timestamp_pattern = r"(^|\s)\d{1,2}:\d{2}(?::\d{2})?(\s|$)"
     return re.sub(timestamp_pattern, " ", text)
-
-
-def count_characters(text):
-    """
-    Counts the number of characters in a text string.
-
-    :param text: The text string to be counted.
-    :return: The number of characters.
-    """
-    return len(text)

@@ -1,11 +1,174 @@
+:root {
+  --primary-color: #663399;
+  --secondary-color: #7f8c8d;
+  --background-color: #0b0c0e;
+  --accent-color: #232129;
+  --text-color: #ffffff;
+  --button-color: #3498db;
+  --button-text-color: #ffffff;
+  --input-background-color: #ffffff;
+  --input-text-color: #333333;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+form {
+  background-color: var(--accent-color);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid var(--secondary-color);
+  background-color: var(--input-background-color);
+  color: var(--input-text-color);
+}
+
+textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+input[type="submit"],
+.copy-button {
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+input[type="submit"]:hover,
+.copy-button:hover {
+  background-color: var(--secondary-color);
+}
+
 .text-part {
-  border: 1px solid #000;
+  background-color: var(--input-background-color);
+  color: var(--input-text-color);
+  border: 1px solid var(--secondary-color);
   padding: 10px;
   margin: 10px 0;
   position: relative;
 }
+
 .copy-button {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+/* Overlay for the full-screen textarea */
+.popout-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  z-index: 1000;
+  padding: 20px; /* Padding around the overlay content */
+}
+
+/* Visible state for the overlay */
+.popout-overlay.visible {
+  display: block;
+}
+
+/* Container for the textarea and the button */
+.textarea-container {
+  position: relative;
+  height: 100%;
+}
+
+/* Styles for the textarea inside the overlay */
+.popout-overlay .textarea-container textarea {
+  width: 100%;
+  height: calc(100% - 40px); /* Adjust for padding */
+  box-sizing: border-box;
+}
+
+/* Style for the pop-out/close button */
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1001; /* Above the textarea */
+}
+
+.form-group {
+  position: relative; /* Required for absolute positioning of the button within it */
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+      background-color: var(--accent-color);
+      color: var(--text-color);
+  }
+  .container {
+      background-color: var(--background-color);
+  }
+  form {
+      background-color: var(--primary-color);
+  }
+  input[type="text"],
+  textarea {
+      background-color: var(--accent-color);
+      color: var(--text-color);
+  }
+  .text-part {
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      border-color: var(--secondary-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+      margin: 10px;
+      padding: 15px;
+  }
+
+  .text-part {
+      padding: 8px;
+  }
+
+  .copy-button {
+      padding: 5px 10px;
+      font-size: 0.8em;
+  }
 }
