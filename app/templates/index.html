@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta description="Split text into parts of a maximum length.">
+  <meta name="author" content="Adie Nunn">
   <title>Text Splitter</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -13,36 +15,34 @@
   <div class="container">
     <h1>Text Splitter</h1>
     <form method="post">
-      <!-- Textarea and Pop-out Button Container -->
       <div class="form-group" id="textarea-group">
-        <label for="text">Text:</label><br>
+        <label for="text">Enter the text you want to split:</label><br>
         <textarea name="text" id="text">{{ text }}</textarea>
         <button type="button" onclick="togglePopoutTextarea()" class="toggle-button" id="toggle-button">Pop-out</button>
       </div>
 
-      <!-- Max Length Input Container -->
       <div class="form-group">
         <label for="max_length">Max Length:</label>
         <input type="text" name="max_length" id="max_length" value="{{ max_length }}">
       </div>
 
-      <!-- Remove Timestamps Checkbox Container -->
       <div class="form-group">
         <input type="checkbox" name="remove_timestamps" id="remove_timestamp" {{ 'checked' if remove_timestamp else ''
           }}>
-        <label for="remove_timestamp">Remove Timestamps</label>
+        <label for="remove_timestamp">Remove Timestamps?</label>
+        <!-- For tests -->
+        <input type="hidden" id="remove_timestamp_value" value="{{ 'True' if remove_timestamp else 'False' }}">
       </div>
 
-      <!-- Submit Button Container -->
       <div class="form-group">
         <input type="submit" value="Submit">
       </div>
     </form>
 
-    <!-- Popout Overlay Container -->
     <div class="popout-overlay" id="popout-overlay"></div>
 
     <h2>Results</h2>
+    <p>Total Words: {{word_count}}.<br />Characters: {{character_count}}.</p>
     {% for part in parts %}
     <div class="text-part">
       <button class="copy-button" id="copy-button-{{ loop.index }}"

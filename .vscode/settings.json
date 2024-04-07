@@ -1,0 +1,10 @@
+{
+  "python.languageServer": "Pylance",
+  "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "pylint.args": [
+      "--disable=W0406",  // import-self
+      "--disable=C0413" // import-ordering (it may look like the imported routes are not doing anything, but they are #JustFlaskThings)
+  ]
+}
